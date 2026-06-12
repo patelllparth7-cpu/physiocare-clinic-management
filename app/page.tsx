@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import StatCard from "@/components/StatCard";
 import RevenueChart from "@/components/RevenueChart";
+import { supabase } from "@/lib/supabase";
 
 import {
   IndianRupee,
@@ -58,12 +59,51 @@ export default function Home() {
   const [treatments, setTreatments] = useState<Treatment[]>([]);
   const [attendance, setAttendance] = useState<Attendance[]>([]);
 
-  useEffect(() => {
-    setPatients(JSON.parse(localStorage.getItem("patientsData") || "[]"));
-    setPayments(JSON.parse(localStorage.getItem("paymentsData") || "[]"));
-    setTreatments(JSON.parse(localStorage.getItem("treatmentsData") || "[]"));
-    setAttendance(JSON.parse(localStorage.getItem("attendanceData") || "[]"));
-  }, []);
+ useEffect(() => {
+  fetchDashboardData();
+}, []);
+
+const fetchDashboardData = async () => {
+  const { data: patientsData } = await supabase.from("patients").select("*");
+  const { data: paymentsData } = await supabase.from("payments").select("*");
+  const { data: treatmentsData } = await supabase.from("treatments").select("*");
+  const { data: attendanceData } = await supabase.from("attendance").select("*");
+
+  setPatients(patientsData || []);
+
+  setPayments(
+    (paymentsData || []).map((p: any) => ({
+      patientId: p.patient_id,
+      patientName: p.patient_name,
+      date: p.date,
+      amount: p.amount,
+      mode: p.mode,
+      notes: p.notes,
+    }))
+  );
+
+  setTreatments(
+    (treatmentsData || []).map((t: any) => ({
+      patientId: t.patient_id,
+      patientName: t.patient_name,
+      date: t.date,
+      pain: t.pain,
+      treatment: t.treatment,
+      payment: t.payment,
+      remarks: t.remarks,
+    }))
+  );
+
+  setAttendance(
+    (attendanceData || []).map((a: any) => ({
+      patientId: a.patient_id,
+      patientName: a.patient_name,
+      date: a.date,
+      status: a.status,
+      notes: a.notes,
+    }))
+  );
+};
 
   const totalRevenue = payments.reduce(
     (sum, p) => sum + Number(p.amount || 0),
