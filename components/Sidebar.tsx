@@ -85,35 +85,9 @@ export default function Sidebar() {
       </nav>
 
       <div className="absolute bottom-5 left-5 right-5 space-y-4">
-        <div className="rounded-3xl bg-white/10 p-4 backdrop-blur">
-          <div className="mb-3 flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-green-400/20 text-green-200">
-              <Activity size={20} />
-            </div>
+       
 
-            <div>
-              <p className="text-sm font-bold">Clinic Live</p>
-              <p className="text-xs text-blue-100">Today activity</p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3 text-center">
-            <div className="rounded-2xl bg-white/10 p-3">
-              <p className="text-lg font-bold">22</p>
-              <p className="text-[11px] text-blue-100">Treatments</p>
-            </div>
-
-            <div className="rounded-2xl bg-white/10 p-3">
-              <p className="text-lg font-bold">₹3.2k</p>
-              <p className="text-[11px] text-blue-100">Revenue</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="rounded-3xl bg-white p-4 text-blue-900 shadow-xl">
-          <p className="text-sm font-bold">Physiotherapy Clinic</p>
-          <p className="mt-1 text-xs text-blue-600">Admin Panel • v1.0</p>
-        </div>
+       
       </div>
     </aside>
   );
