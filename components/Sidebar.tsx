@@ -28,7 +28,7 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-72 bg-gradient-to-b from-blue-950 via-blue-900 to-blue-700 p-5 text-white shadow-2xl">
+    <aside className="fixed left-0 top-0 h-screen w-72 overflow-y-auto bg-gradient-to-b from-blue-950 via-blue-900 to-blue-700 p-5 text-white shadow-2xl [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       <div className="mb-8 rounded-3xl bg-white/10 p-4 backdrop-blur">
         <div className="flex items-center gap-3">
           <div className="flex h-13 w-13 items-center justify-center rounded-2xl bg-white text-blue-700 shadow-lg">
@@ -83,7 +83,7 @@ export default function Sidebar() {
         })}
       </nav>
 
-      <div className="absolute bottom-5 left-5 right-5 space-y-4">
+    <div className="mt-8 space-y-4">
        
 
        
