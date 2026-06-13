@@ -12,7 +12,6 @@ import {
   Settings,
   HeartPulse,
   ChevronRight,
-  Activity,
 } from "lucide-react";
 
 const menuItems = [
